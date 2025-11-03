@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import ModernHeader from '@/components/ModernHeader';
 import SmartBar from '@/components/SmartBar';
 import Hero from '@/components/Hero';
@@ -6,7 +7,6 @@ import Services from '@/components/Services';
 import VSL from '@/components/VSL';
 import HowItWorks from '@/components/HowItWorks';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
 import StructuredData from '@/components/StructuredData';
 import LovableOfferPopup from '@/components/LovableOfferPopup';
 import { MessageCircle, Figma, FileText } from 'lucide-react';
@@ -36,16 +36,37 @@ const Index = () => {
     }
   ];
 
+  // SEO metadata
+  const title = "ContentFarm - Professional SaaS Video Production Agency | Product Demos & Explainer Videos";
+  const description = "Leading SaaS video production agency specializing in high-converting product demos, explainer videos, and onboarding content. 30-day results guarantee. Trusted by top SaaS companies worldwide. Transform your product into engaging video content that drives conversions and reduces churn by 40%.";
+  const keywords = "SaaS video production agency, product demo videos, explainer videos, SaaS marketing videos, video content marketing, onboarding videos, product video production, B2B video marketing, software demo videos, SaaS video agency, video production Lisbon Portugal, YouTube content strategy, webinar repurposing, video marketing services";
+  const url = "https://contentfarm.club";
+  const image = "https://contentfarm.club/lovable-uploads/42844e19-815c-453d-9d1d-66e5ec0590fb.png";
+  const type = "website";
+
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="ContentFarm - Professional SaaS Video Production Agency | Product Demos & Explainer Videos"
-        description="Leading SaaS video production agency specializing in high-converting product demos, explainer videos, and onboarding content. 30-day results guarantee. Trusted by top SaaS companies worldwide. Transform your product into engaging video content that drives conversions and reduces churn by 40%."
-        keywords="SaaS video production agency, product demo videos, explainer videos, SaaS marketing videos, video content marketing, onboarding videos, product video production, B2B video marketing, software demo videos, SaaS video agency, video production Lisbon Portugal, YouTube content strategy, webinar repurposing, video marketing services"
-        url="https://contentfarm.club"
-        type="website"
-        image="https://contentfarm.club/lovable-uploads/42844e19-815c-453d-9d1d-66e5ec0590fb.png"
-      />
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={url} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content={type} />
+        <meta property="og:url" content={url} />
+        <meta property="og:image" content={image} />
+        <meta property="og:site_name" content="ContentFarm" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+      </Head>
       
       <StructuredData type="organization" />
       <StructuredData type="service" services={services} />

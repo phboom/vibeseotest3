@@ -1,5 +1,4 @@
 # robots.txt for https://example.com
-# Purpose: maximize crawlability of public content, block private/staging areas and crawler traps
 # Last-Updated: 2025-11-03
 
 User-agent: *
@@ -8,22 +7,19 @@ Disallow: /admin/
 Disallow: /internal/
 Disallow: /tmp/
 Disallow: /cgi-bin/
-
 Disallow: /*?*utm_
 Disallow: /*?*gclid=
 Disallow: /*?*fbclid=
 Disallow: /*?*yclid=
 Disallow: /*?*msclkid=
-Disallow: /*?*session=
-Disallow: /*;*session=
-Disallow: /*?*jsessionid=
-Disallow: /*;*jsessionid=
-Disallow: /*?*phpsessid=
-Disallow: /*;*phpsessid=
-Disallow: /*?*sid=
-Disallow: /*?*cid=
-Disallow: /*?*ref=
-Disallow: /*?*replytocom=
+Disallow: /*?*session
+Disallow: /*?*jsessionid
+Disallow: /*?*phpsessid
+Disallow: /*?*sid
+Disallow: /*?*cid
+Disallow: /*?*ref
+Disallow: /*?*replytocom
+Disallow: /*;jsessionid
 
 Allow: /*.js
 Allow: /*.css
