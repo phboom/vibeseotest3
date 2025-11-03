@@ -4,12 +4,126 @@ import { PortableText } from '@portabletext/react'
 import { fetchPostBySlug, type SanityPost } from '@/lib/sanity'
 import ModernHeader from '@/components/ModernHeader'
 import Footer from '@/components/Footer'
-import SEO from '@/components/SEO'
 import Breadcrumb from '@/components/Breadcrumb'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { ArrowLeft } from 'lucide-react'
+import { Helmet } from 'react-helmet'
+
+const seoOverrides: any = {
+  // The following object should contain the provided SEO metadata:
+  // Example shape:
+  // title: '...',
+  // description: '...',
+  // keywords: ['k1', 'k2'] or 'k1, k2',
+  // canonical: 'https://...',
+  // openGraph: {
+  //   type: 'article' | 'website',
+  //   title: '...',
+  //   description: '...',
+  //   url: 'https://...',
+  //   siteName: '...',
+  //   locale: 'en_US',
+  //   images: [
+  //     { url: 'https://...', width: 1200, height: 630, alt: '...' }
+  //     // or 'https://...'
+  //   ]
+  // },
+  // twitter: {
+  //   card: 'summary_large_image' | 'summary',
+  //   site: '@site',
+  //   creator: '@creator',
+  //   title: '...',
+  //   description: '...',
+  //   image: 'https://...'
+  // }
+}
+
+function MetaTags({
+  title,
+  description,
+  keywords,
+  url,
+  image,
+  baseType = 'website',
+}: {
+  title: string
+  description?: string
+  keywords?: string | string[]
+  url?: string
+  image?: string
+  baseType?: 'website' | 'article'
+}) {
+  const og = seoOverrides?.openGraph || {}
+  const tw = seoOverrides?.twitter || {}
+
+  const finalTitle = seoOverrides?.title || og?.title || tw?.title || title
+  const finalDescription =
+    seoOverrides?.description || og?.description || tw?.description || description
+  const finalKeywords = seoOverrides?.keywords || keywords
+  const finalUrl = seoOverrides?.canonical || og?.url || url
+  const finalType = og?.type || baseType
+  const finalSiteName = og?.siteName
+  const finalLocale = og?.locale
+  const ogImages: any[] = Array.isArray(og?.images)
+    ? og.images
+    : og?.images
+    ? [og.images]
+    : image
+    ? [image]
+    : []
+
+  const twitterCard = tw?.card || (ogImages.length > 0 ? 'summary_large_image' : 'summary')
+  const twitterSite = tw?.site
+  const twitterCreator = tw?.creator
+  const twitterImage =
+    tw?.image ||
+    (Array.isArray(ogImages) && ogImages.length > 0
+      ? typeof ogImages[0] === 'string'
+        ? ogImages[0]
+        : ogImages[0]?.url
+      : undefined)
+
+  const keywordsContent = Array.isArray(finalKeywords) ? finalKeywords.join(', ') : finalKeywords
+
+  return (
+    <Helmet>
+      {finalTitle && <title>{finalTitle}</title>}
+      {finalDescription && <meta name="description" content={finalDescription} />}
+      {keywordsContent && <meta name="keywords" content={keywordsContent} />}
+
+      {finalUrl && <link rel="canonical" href={finalUrl} />}
+
+      <meta property="og:type" content={finalType || 'website'} />
+      {finalTitle && <meta property="og:title" content={finalTitle} />}
+      {finalDescription && <meta property="og:description" content={finalDescription} />}
+      {finalUrl && <meta property="og:url" content={finalUrl} />}
+      {finalSiteName && <meta property="og:site_name" content={finalSiteName} />}
+      {finalLocale && <meta property="og:locale" content={finalLocale} />}
+      {ogImages.map((img, idx) => {
+        if (typeof img === 'string') {
+          return <meta property="og:image" content={img} key={`og-image-${idx}`} />
+        }
+        return (
+          <span key={`og-image-${idx}`}>
+            {img?.url && <meta property="og:image" content={img.url} />}
+            {img?.width && <meta property="og:image:width" content={String(img.width)} />}
+            {img?.height && <meta property="og:image:height" content={String(img.height)} />}
+            {img?.alt && <meta property="og:image:alt" content={img.alt} />}
+          </span>
+        )
+      })}
+
+      <meta name="twitter:card" content={twitterCard} />
+      {twitterSite && <meta name="twitter:site" content={twitterSite} />}
+      {twitterCreator && <meta name="twitter:creator" content={twitterCreator} />}
+      {finalTitle && <meta name="twitter:title" content={finalTitle} />}
+      {finalDescription && <meta name="twitter:description" content={finalDescription} />}
+      {twitterImage && <meta name="twitter:image" content={twitterImage} />}
+    </Helmet>
+  )
+}
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>()
@@ -44,8 +158,27 @@ const BlogPost = () => {
   }, [slug])
 
   if (loading) {
+    const fallbackTitle =
+      seoOverrides?.title || 'Loading... | ContentFarm Blog'
+    const fallbackDescription =
+      seoOverrides?.description || 'Loading blog post...'
     return (
       <div className="min-h-screen">
+        <MetaTags
+          title={fallbackTitle}
+          description={fallbackDescription}
+          keywords={seoOverrides?.keywords}
+          url={seoOverrides?.canonical}
+          image={
+            Array.isArray(seoOverrides?.openGraph?.images) &&
+            seoOverrides.openGraph.images.length > 0
+              ? typeof seoOverrides.openGraph.images[0] === 'string'
+                ? seoOverrides.openGraph.images[0]
+                : seoOverrides.openGraph.images[0]?.url
+              : undefined
+          }
+          baseType="article"
+        />
         <ModernHeader />
         <Breadcrumb />
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -70,11 +203,26 @@ const BlogPost = () => {
   }
 
   if (notFound || !post) {
+    const nfTitle =
+      seoOverrides?.title || 'Post Not Found - ContentFarm'
+    const nfDescription =
+      seoOverrides?.description || 'The requested blog post could not be found.'
     return (
       <div className="min-h-screen">
-        <SEO 
-          title="Post Not Found - ContentFarm"
-          description="The requested blog post could not be found."
+        <MetaTags
+          title={nfTitle}
+          description={nfDescription}
+          keywords={seoOverrides?.keywords}
+          url={seoOverrides?.canonical}
+          image={
+            Array.isArray(seoOverrides?.openGraph?.images) &&
+            seoOverrides.openGraph.images.length > 0
+              ? typeof seoOverrides.openGraph.images[0] === 'string'
+                ? seoOverrides.openGraph.images[0]
+                : seoOverrides.openGraph.images[0]?.url
+              : undefined
+          }
+          baseType="website"
         />
         <ModernHeader />
         <Breadcrumb />
@@ -96,12 +244,27 @@ const BlogPost = () => {
     )
   }
 
+  const postUrl = `https://contentfarm.club/blog/${post.slug.current}`
+  const postTitle = `${post.title} - ContentFarm Blog`
+  const postDescription = post.excerpt || `Read ${post.title} on the ContentFarm blog`
+  const postImage = post.mainImage?.asset.url
+
   return (
     <div className="min-h-screen">
-      <SEO 
-        title={`${post.title} - ContentFarm Blog`}
-        description={post.excerpt || `Read ${post.title} on the ContentFarm blog`}
-        url={`https://contentfarm.club/blog/${post.slug.current}`}
+      <MetaTags
+        title={postTitle}
+        description={postDescription}
+        keywords={seoOverrides?.keywords}
+        url={seoOverrides?.canonical || postUrl}
+        image={
+          (Array.isArray(seoOverrides?.openGraph?.images) &&
+            seoOverrides.openGraph.images.length > 0
+            ? (typeof seoOverrides.openGraph.images[0] === 'string'
+                ? seoOverrides.openGraph.images[0]
+                : seoOverrides.openGraph.images[0]?.url)
+            : undefined) || postImage
+        }
+        baseType="article"
       />
       
       <ModernHeader />

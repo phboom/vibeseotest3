@@ -1,13 +1,45 @@
+# robots.txt for https://example.com
+# Purpose: maximize crawlability of public content, block private/staging areas and crawler traps
+# Last-Updated: 2025-11-03
 
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /internal/
+Disallow: /tmp/
+Disallow: /cgi-bin/
 
-# Sitemap
-Sitemap: https://contentfarm.club/sitemap.xml
+Disallow: /*?*utm_
+Disallow: /*?*gclid=
+Disallow: /*?*fbclid=
+Disallow: /*?*yclid=
+Disallow: /*?*msclkid=
+Disallow: /*?*session=
+Disallow: /*;*session=
+Disallow: /*?*jsessionid=
+Disallow: /*;*jsessionid=
+Disallow: /*?*phpsessid=
+Disallow: /*;*phpsessid=
+Disallow: /*?*sid=
+Disallow: /*?*cid=
+Disallow: /*?*ref=
+Disallow: /*?*replytocom=
 
-# Disallow admin or sensitive areas (add as needed)
-# Disallow: /admin/
-# Disallow: /private/
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.woff
+Allow: /*.woff2
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
+User-agent: Googlebot-Image
+Allow: /images/
+
+User-agent: bingbot
+Crawl-delay: 5
+
+Sitemap: https://example.com/sitemap_index.xml

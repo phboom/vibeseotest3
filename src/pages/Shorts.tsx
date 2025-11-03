@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import { ArrowLeft, Play, Clock, TrendingUp, Target, Zap, Users, MessageCircle, Figma, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect } from 'react';
+import Head from 'next/head';
 
 const Shorts = () => {
   useEffect(() => {
@@ -98,6 +99,32 @@ const Shorts = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <Head>
+        <title>Short-Form Videos That Go Viral | SaaS Shorts Production</title>
+        <meta
+          name="description"
+          content="Bite-sized animated content perfect for social media, capturing attention in seconds and driving massive engagement for your SaaS product. 15–60s videos with fast delivery."
+        />
+        <meta
+          name="keywords"
+          content="short-form video, SaaS video, social media video, Instagram Reels, TikTok, YouTube Shorts, product demo, animated video, viral content, video marketing, growth, engagement"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Short-Form Videos That Go Viral | SaaS Shorts Production" />
+        <meta
+          property="og:description"
+          content="Bite-sized animated content perfect for social media, capturing attention in seconds and driving massive engagement for your SaaS product."
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Short-Form Videos That Go Viral | SaaS Shorts Production" />
+        <meta
+          name="twitter:description"
+          content="Create engaging short-form videos that capture attention and drive results for your SaaS product."
+        />
+      </Head>
+
       <ModernHeader />
       
       <main className="pt-24">

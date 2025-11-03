@@ -1,5 +1,42 @@
 import ModernHeader from '@/components/ModernHeader';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | ContentFarm.club',
+  description: 'Read the ContentFarm.club Privacy Policy (effective June 1, 2025). Learn how we collect, use, share, and protect your information, including cookies, analytics, and payments via Stripe.',
+  keywords: [
+    'Privacy Policy',
+    'ContentFarm',
+    'ContentFarm.club',
+    'Data Protection',
+    'Cookies',
+    'Google Analytics',
+    'Stripe',
+    'Personal Data',
+    'User Rights',
+    'GDPR'
+  ],
+  alternates: {
+    canonical: 'https://contentfarm.club/privacy-policy'
+  },
+  openGraph: {
+    title: 'Privacy Policy | ContentFarm.club',
+    description: 'Read the ContentFarm.club Privacy Policy (effective June 1, 2025). Learn how we collect, use, share, and protect your information, including cookies, analytics, and payments via Stripe.',
+    url: 'https://contentfarm.club/privacy-policy',
+    type: 'article',
+    siteName: 'ContentFarm.club'
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Privacy Policy | ContentFarm.club',
+    description: 'Read the ContentFarm.club Privacy Policy (effective June 1, 2025). Learn how we collect, use, share, and protect your information, including cookies, analytics, and payments via Stripe.'
+  },
+  robots: {
+    index: true,
+    follow: true
+  }
+};
 
 const PrivacyPolicy = () => {
   return (

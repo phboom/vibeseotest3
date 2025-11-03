@@ -14,6 +14,44 @@ const Blog = () => {
   const [posts, setPosts] = useState<SanityPost[]>([])
   const [loading, setLoading] = useState(true)
 
+  const seoData = {
+    title: "Blog - ContentFarm",
+    description: "Latest insights, tips, and stories from the world of SaaS video production",
+    keywords: [
+      "ContentFarm",
+      "SaaS video production",
+      "video marketing",
+      "video content",
+      "B2B SaaS",
+      "content marketing",
+      "startup marketing",
+      "video blog",
+      "storytelling"
+    ],
+    openGraph: {
+      type: "website",
+      title: "Blog - ContentFarm",
+      description: "Latest insights, tips, and stories from the world of SaaS video production",
+      url: "https://contentfarm.ai/blog",
+      images: [
+        {
+          url: "https://contentfarm.ai/og/blog.jpg",
+          width: 1200,
+          height: 630,
+          alt: "ContentFarm Blog"
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Blog - ContentFarm",
+      description: "Latest insights, tips, and stories from the world of SaaS video production",
+      images: ["https://contentfarm.ai/og/blog.jpg"],
+      site: "@ContentFarm",
+      creator: "@ContentFarm"
+    }
+  }
+
   useEffect(() => {
     const loadPosts = async () => {
       try {
@@ -33,8 +71,7 @@ const Blog = () => {
     return (
       <>
         <SEO 
-          title="Blog - ContentFarm"
-          description="Latest insights, tips, and stories from the world of SaaS video production"
+          {...seoData}
         />
         <ModernHeader />
         <main className="min-h-screen pt-20 cinematic-section">
@@ -71,8 +108,7 @@ const Blog = () => {
   return (
     <>
       <SEO 
-        title="Blog - ContentFarm"
-        description="Latest insights, tips, and stories from the world of SaaS video production"
+        {...seoData}
       />
       <ModernHeader />
       <main className="min-h-screen pt-20 cinematic-section">

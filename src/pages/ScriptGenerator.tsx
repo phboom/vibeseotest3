@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,7 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import ModernHeader from '@/components/ModernHeader';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
 import { Copy, Download, FileText, Clock, Target, Zap } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
@@ -214,12 +214,20 @@ ${data.callToAction || `Take action on what you've learned about ${data.title.to
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="Script Generator - Create Professional Scripts for Any Purpose | ContentFarm"
-        description="Generate professional scripts for presentations, sales pitches, webinars, and educational content. Free script generator tool for content creators and professionals."
-        keywords="script generator, presentation scripts, sales scripts, webinar scripts, content creation, script writing"
-        url="https://contentfarm.club/script-generator"
-      />
+      <Head>
+        <title>Script Generator - Create Professional Scripts for Any Purpose | ContentFarm</title>
+        <meta name="description" content="Generate professional scripts for presentations, sales pitches, webinars, and educational content. Free script generator tool for content creators and professionals." />
+        <meta name="keywords" content="script generator, presentation scripts, sales scripts, webinar scripts, content creation, script writing" />
+        <link rel="canonical" href="https://contentfarm.club/script-generator" />
+        <meta property="og:title" content="Script Generator - Create Professional Scripts for Any Purpose | ContentFarm" />
+        <meta property="og:description" content="Generate professional scripts for presentations, sales pitches, webinars, and educational content. Free script generator tool for content creators and professionals." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://contentfarm.club/script-generator" />
+        <meta property="og:site_name" content="ContentFarm" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Script Generator - Create Professional Scripts for Any Purpose | ContentFarm" />
+        <meta name="twitter:description" content="Generate professional scripts for presentations, sales pitches, webinars, and educational content. Free script generator tool for content creators and professionals." />
+      </Head>
       
       <ModernHeader />
       

@@ -1,6 +1,39 @@
-
 import ModernHeader from '@/components/ModernHeader';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | ContentFarm.club',
+  description:
+    'Review the Terms of Service for ContentFarm.club effective June 1, 2025, covering acceptable use, payments, disclaimers, liability, and contact details.',
+  keywords: [
+    'ContentFarm',
+    'ContentFarm.club',
+    'Terms of Service',
+    'TOS',
+    'Terms',
+    'Acceptable Use',
+    'Payments',
+    'Disclaimers',
+    'Limitation of Liability',
+    'Portugal Law',
+    'Privacy Policy',
+  ],
+  openGraph: {
+    title: 'Terms of Service | ContentFarm.club',
+    description:
+      'Review the Terms of Service for ContentFarm.club effective June 1, 2025, covering acceptable use, payments, disclaimers, liability, and contact details.',
+    url: 'https://contentfarm.club/terms-of-service',
+    siteName: 'ContentFarm.club',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Terms of Service | ContentFarm.club',
+    description:
+      'Review the Terms of Service for ContentFarm.club effective June 1, 2025, covering acceptable use, payments, disclaimers, liability, and contact details.',
+  },
+};
 
 const TermsOfService = () => {
   return (

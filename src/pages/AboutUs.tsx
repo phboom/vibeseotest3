@@ -1,4 +1,3 @@
-
 import ModernHeader from '@/components/ModernHeader';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
@@ -9,7 +8,7 @@ import AboutStory from '@/components/about/AboutStory';
 import AboutFounders from '@/components/about/AboutFounders';
 import AboutMission from '@/components/about/AboutMission';
 import AboutWhyChoose from '@/components/about/AboutWhyChoose';
-
+import Head from 'next/head';
 
 const AboutUs = () => {
   const faqs = [
@@ -27,13 +26,33 @@ const AboutUs = () => {
     }
   ];
 
+  const title = "About ContentFarm - SaaS Video Production Experts | Lisbon, Portugal";
+  const description = "Learn about ContentFarm's story, mission, and team. Founded in 2024 in Lisbon, we're dedicated to helping SaaS companies scale through high-converting video content.";
+  const keywords = "ContentFarm about, video production team, SaaS marketing experts, Lisbon video agency, Vady Kvitey, Julia Yuvchenko";
+  const url = "https://contentfarm.club/about";
+
   return (
     <div className="min-h-screen">
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={url} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+      </Head>
+
       <SEO 
-        title="About ContentFarm - SaaS Video Production Experts | Lisbon, Portugal"
-        description="Learn about ContentFarm's story, mission, and team. Founded in 2024 in Lisbon, we're dedicated to helping SaaS companies scale through high-converting video content."
-        keywords="ContentFarm about, video production team, SaaS marketing experts, Lisbon video agency, Vady Kvitey, Julia Yuvchenko"
-        url="https://contentfarm.club/about"
+        title={title}
+        description={description}
+        keywords={keywords}
+        url={url}
       />
       
       <StructuredData type="faq" faqs={faqs} />

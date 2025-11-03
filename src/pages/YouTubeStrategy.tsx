@@ -1,21 +1,44 @@
-import SEO from '@/components/SEO';
 import ModernHeader from '@/components/ModernHeader';
 import Footer from '@/components/Footer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Play, TrendingUp, Users } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 
 const YouTubeStrategy = () => {
+  const meta = {
+    title: 'SaaS Brands Crushing YouTube in 2025 | Marketing Strategy Guide',
+    description:
+      "Discover how top SaaS brands like HubSpot, Salesforce, and Ahrefs are building powerful YouTube strategies that drive awareness, education, and user trust in 2025.",
+    keywords:
+      'saas youtube marketing, youtube content strategy, saas case studies, video marketing examples, youtube for b2b',
+    url: '/youtube-strategy',
+    image: '/lovable-uploads/cbeca23c-c3fa-47a7-a435-9558de8f14b1.png',
+  };
+
   return (
     <>
-      <SEO 
-        title="SaaS Brands Crushing YouTube in 2025 | Marketing Strategy Guide"
-        description="Discover how top SaaS brands like HubSpot, Salesforce, and Ahrefs are building powerful YouTube strategies that drive awareness, education, and user trust in 2025."
-        keywords="saas youtube marketing, youtube content strategy, saas case studies, video marketing examples, youtube for b2b"
-        url="/youtube-strategy"
-      />
-      
+      <Helmet>
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+        <meta name="keywords" content={meta.keywords} />
+        <link rel="canonical" href={meta.url} />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:url" content={meta.url} />
+        <meta property="og:image" content={meta.image} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image} />
+      </Helmet>
+
       <ModernHeader />
       
       <main className="min-h-screen bg-background">

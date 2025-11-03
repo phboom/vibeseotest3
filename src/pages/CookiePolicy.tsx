@@ -1,6 +1,39 @@
-
+import type { Metadata } from 'next';
 import ModernHeader from '@/components/ModernHeader';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Cookie Policy | ContentFarm.club',
+  description:
+    "ContentFarm.club's Cookie Policy (effective 1 June 2025). Learn what cookies are, how we use analytics and advertising cookies, how to manage preferences, and how to contact us.",
+  keywords: [
+    'cookie policy',
+    'cookies',
+    'privacy',
+    'ContentFarm',
+    'ContentFarm.club',
+    'analytics cookies',
+    'advertising cookies',
+    'manage cookies',
+  ],
+  openGraph: {
+    title: 'Cookie Policy | ContentFarm.club',
+    description:
+      "ContentFarm.club's Cookie Policy (effective 1 June 2025). Learn what cookies are, how we use analytics and advertising cookies, how to manage preferences, and how to contact us.",
+    url: 'https://contentfarm.club/cookie-policy',
+    siteName: 'ContentFarm.club',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cookie Policy | ContentFarm.club',
+    description:
+      "ContentFarm.club's Cookie Policy (effective 1 June 2025). Learn what cookies are, how we use analytics and advertising cookies, how to manage preferences, and how to contact us.",
+  },
+  alternates: {
+    canonical: 'https://contentfarm.club/cookie-policy',
+  },
+};
 
 const CookiePolicy = () => {
   return (

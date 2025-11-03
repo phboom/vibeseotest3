@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import { ArrowLeft, Play, TrendingUp, Users, Zap } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useEffect } from 'react';
+import Head from 'next/head';
 
 const CaseStudies = () => {
   useEffect(() => {
@@ -84,6 +85,19 @@ const CaseStudies = () => {
     }
   };
   return <div className="min-h-screen cinematic-section">
+      <Head>
+        <title>Case Studies | Watch How We Transformed These Businesses</title>
+        <meta name="description" content="See real results from real companies. Average 250% ROI increase and 30-day turnaround. Watch our video success stories." />
+        <meta name="keywords" content="case studies, success stories, video strategy, video marketing, ROI increase, conversions, retention, user engagement, SaaS growth, Wistia" />
+
+        <meta property="og:title" content="Case Studies | Watch How We Transformed These Businesses" />
+        <meta property="og:description" content="See real results from real companies. Average 250% ROI increase and 30-day turnaround. Watch our video success stories." />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Case Studies | Watch How We Transformed These Businesses" />
+        <meta name="twitter:description" content="See real results from real companies. Average 250% ROI increase and 30-day turnaround. Watch our video success stories." />
+      </Head>
       <ModernHeader />
       
       <main className="pt-24">

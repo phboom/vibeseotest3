@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,7 +10,6 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Badge } from '@/components/ui/badge';
 import ModernHeader from '@/components/ModernHeader';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
 import { Copy, Download, Video, Clock, Users, Target, Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -182,12 +182,20 @@ Thanks for watching! Don't forget to subscribe for more content about ${data.top
 
   return (
     <div className="min-h-screen cinematic-section">
-      <SEO 
-        title="YouTube Script Generator - Create Engaging Video Scripts | ContentFarm"
-        description="Generate professional YouTube scripts instantly. Create engaging video content with our free script generator tool. Perfect for content creators and marketers."
-        keywords="YouTube script generator, video script creator, content creation, YouTube video scripts, video marketing"
-        url="https://contentfarm.club/youtube-script-generator"
-      />
+      <Head>
+        <title>YouTube Script Generator - Create Engaging Video Scripts | ContentFarm</title>
+        <meta name="description" content="Generate professional YouTube scripts instantly. Create engaging video content with our free script generator tool. Perfect for content creators and marketers." />
+        <meta name="keywords" content="YouTube script generator, video script creator, content creation, YouTube video scripts, video marketing" />
+        <link rel="canonical" href="https://contentfarm.club/youtube-script-generator" />
+        <meta property="og:title" content="YouTube Script Generator - Create Engaging Video Scripts | ContentFarm" />
+        <meta property="og:description" content="Generate professional YouTube scripts instantly. Create engaging video content with our free script generator tool. Perfect for content creators and marketers." />
+        <meta property="og:url" content="https://contentfarm.club/youtube-script-generator" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ContentFarm" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="YouTube Script Generator - Create Engaging Video Scripts | ContentFarm" />
+        <meta name="twitter:description" content="Generate professional YouTube scripts instantly. Create engaging video content with our free script generator tool. Perfect for content creators and marketers." />
+      </Head>
       
       <ModernHeader />
       

@@ -8,6 +8,7 @@ import BeforeAfterShowcase from '@/components/case-studies/BeforeAfterShowcase';
 import GifShowcase from '@/components/case-studies/GifShowcase';
 
 import CaseStudyCTA from '@/components/case-studies/CaseStudyCTA';
+import Head from 'next/head';
 
 const CaseStudies = () => {
   useEffect(() => {
@@ -107,8 +108,28 @@ const CaseStudies = () => {
     }]
   };
 
+  const pageTitle = "TechFlow Solutions Case Study: SaaS Platform Launch Campaign | ContentFarm";
+  const pageDescription = "See how ContentFarm helped TechFlow Solutions launch their SaaS platform with video: 340% increase in conversions, 2.3M views, 67% trial signups, $127K in revenue, and 89% retention.";
+  const pageKeywords = "TechFlow Solutions case study, SaaS platform launch, video marketing case study, Wistia videos, testimonials, explainer video, vertical ads, conversions, trial signup rate, ContentFarm";
+  const ogImage = "/lovable-uploads/279b69c3-727e-44b2-8758-b80bef592572.png";
+
   return (
     <div className="min-h-screen bg-black">
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content={pageKeywords} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="ContentFarm" />
+        <meta property="og:image" content={ogImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={ogImage} />
+      </Head>
+
       <ModernHeader />
       
       <main className="pt-24">
